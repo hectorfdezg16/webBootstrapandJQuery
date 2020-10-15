@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Search your repos!</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <!-- codigo para costumizar un poco la pagina-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <style>
+    /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+    .navbar {
+      margin-bottom: 50px;
+      border-radius: 0;
+    }
+    
+    /* Remove the jumbotron's default bottom margin */ 
+     .jumbotron {
+      margin-bottom: 0;
+    }
+   
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+  </style>
+   
+<!--Aqui ponemos la función que realizará nuestro botón-->
+
+<script>
+  $(document).ready(function(){
+  $("#boton").click(function(){
+  
+  //limpia los datos de la tabla previamente
+  $("#tabla > tbody").empty();
+  
+  /*Después de ver como podemos guardar parametro input lo añadiremos a función*/
+  /*data: son los datos que pasamos como parametro y status: es el estado de peticion que hemos hecho*/
+  // se podria hacer con la funcion AJAX pero he escogido una que recorra todo el fichero JSON con mas simplicidad y menos codigo
+  
+        var url='https://api.github.com/users/' + $("#username").val() +'/repos';
+        $.getJSON(url, function (r) {
+		
+		// si no encuentra usuario nos devolvera un alert diciendo que no hay usuario
+		
+	if (r.length == 0){
+		alert("This username doesn't exist!");
+	}
+		//si hubiese usuario procede a enseñarlo todo en la tabla
+		
+	else{
+            for (var i = 0; i < r.length; i++) {
+                var tr = $('<tr>');
+
+                tr.append("<td>" + r[i].name + "</td>");
+                tr.append("<td>" + r[i].description + "</td>");
+                tr.append("<td>" + r[i].stargazers_count + "</td>");
+                $('tbody').append(tr);
+            }
+		}
+    });  
+  });
+});
+</script>
+</head>
+<body>
+
+<!-- cabecera de la pagina-->
+
+<div class="jumbotron">
+  <div class="container text-center">  
+  <!--Título principal de la página-->
+  <h1>Search your repos!</h1>
+  </div>
+</div>
+
+<!-- pequeña barra de navegación por los diferentes menus-->
+<!-- nos servira para el proyecto web-->
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Home</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Soon</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Shop</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!--Pequeño comentario descritvo de lo que puede hacer el usuario-->
+  <p>Search all information about anything member of the GitHub's community</p>
+  
+  <!--Abrimos una clase formulario donde el usuario introducirá sus datos-->
+  <div class="form-group">
+  <label for="usr">GitHub's Username:</label>
+  <input type="text" class="form-control" id="username">
+  <button type="button" class="btn btn-default" id="boton">Search</button>
+</div>
+
+<!-- metemos la tabla en la seccion container -->
+
+<table class="table" id="tabla">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Stargazers</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- aqui esta el pie de pagina con información UPC-->
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <h4>© Polytechnic University of Catalonia</h4>
+  <h5><small>by Héctor Fernández Granja </small></h5>
+</div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>More Info</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!-- codigo para costumizar un poco la pagina-->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <style>
+    /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+    .navbar {
+      margin-bottom: 50px;
+      border-radius: 0;
+    }
+    
+    /* Remove the jumbotron's default bottom margin */ 
+     .jumbotron {
+      margin-bottom: 0;
+    }
+   
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+  </style>
+
+<!-- funcion cargar datos otro documento-->
+
+<script>
+function loadXMLDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", "home.html", true);
+  xhttp.send();
+}
+</script>
+</head>
+<body>
+
+<!-- cabecera de la pagina-->
+
+<div class="jumbotron">
+  <div class="container text-center">  
+  <!--Título principal de la página-->
+  <h1>More Info</h1>
+  </div>
+</div>
+
+<!-- pequeña barra de navegación por los diferentes menus-->
+<!-- nos servira para el proyecto web-->
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Home</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Soon</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Shop</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- clase container contiene el cuerpo de nuestra pagina-->
+
+<div class="container">
+  <p>The GitHub's username "Example" has the following information: </p>
+  <!--Esta es la tabla donde estarán todos los datos del usuario requerido-->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Number of followers</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Example1</td>
+        <td>Example2</td>
+        <td>Example3</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- aqui esta el pie de pagina con información UPC-->
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <h4>© Polytechnic University of Catalonia</h4>
+  <h5><small>by Héctor Fernández Granja </small></h5>
+</div>
+</body>
+</html>
